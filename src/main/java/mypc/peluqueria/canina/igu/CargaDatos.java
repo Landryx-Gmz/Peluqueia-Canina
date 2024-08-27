@@ -242,7 +242,7 @@ public class CargaDatos extends javax.swing.JFrame {
         //Funcion Guaradar creado automaticamente por IDE despues de crearla aqui.
         control.guardar(nombreMasco, raza, color, observaciones, alergico,atenEsp,
                 nombreDuenio, tlfDuenio );
-        
+        //Porcion de codigo para mostrar un cartel.
         JOptionPane optionPane = new JOptionPane("Se guardó Correctamente");//panel de opcion con mensaje
         optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);//seleccionamos que tipo de mensaje queremos en este caso es de informacion
         JDialog dialog = optionPane.createDialog("Guardado Exitoso");//Esto es el dialogo en la pantalla

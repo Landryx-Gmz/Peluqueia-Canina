@@ -1,5 +1,6 @@
 package mypc.peluqueria.canina.logica;
 
+import java.util.List;
 import mypc.peluqueria.canina.persistencia.ControladoraPersistencia;
 
 public class Controladora {
@@ -26,6 +27,14 @@ public class Controladora {
         
         controlPersis.guardar(duenio,masco);
         
+    }
+
+    public List<Mascota> traerMascotas() {
+        return controlPersis.traerMascotas();
+    }
+
+    public void borrarMascota(int num_cliente) {
+        controlPersis.borrarMascota (num_cliente);
     }
     
     
