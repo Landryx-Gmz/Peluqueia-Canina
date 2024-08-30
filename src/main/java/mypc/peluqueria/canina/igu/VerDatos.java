@@ -28,7 +28,7 @@ public class VerDatos extends javax.swing.JFrame {
         tablaMascotas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -66,10 +66,10 @@ public class VerDatos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\led_a\\Archivos de programacion\\Proyects\\Ejercicios\\Peluqueria_Canina\\Recursos\\BotonEdicion.png")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\led_a\\Archivos de programacion\\Proyects\\Ejercicios\\Peluqueria_Canina\\Recursos\\BotonEdicion.png")); // NOI18N
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -87,7 +87,7 @@ public class VerDatos extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminar))
                         .addGap(24, 24, 24))))
         );
@@ -104,7 +104,7 @@ public class VerDatos extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -148,9 +148,29 @@ public class VerDatos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
+         if(tablaMascotas.getRowCount() > 0) {
+            //Controlamos que se haya seleccionado a una mascota
+            if(tablaMascotas.getSelectedRow()!=-1){
+                //obtenemos id de la mascota a eliminar                
+               int num_cliente=Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(),0)));//Con este metodo traemos el valor del numero de cliente de la tabla para convertirlo en String y luego guardarlo como int para poder saber que Datos borrar de la tabla
+               //llamo para que se vea en pantalla la ventana o clase ModificarDatos .
+              ModificarDatos pantallaModif = new  ModificarDatos(num_cliente);
+              pantallaModif.setVisible(true);
+              pantallaModif.setLocationRelativeTo(null);
+              this.dispose(); 
+            }
+            else{
+                mostrarMensaje("No seleccionó ninguna mascota", "Error","Error al eliminar");
+            }
+        }
+        else { 
+            mostrarMensaje("No hay nada para eliminar en la tabla", "Error","Error al eliminar");            
+        }
+        
+         
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
@@ -159,9 +179,9 @@ public class VerDatos extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         //Contolamos que la tabla no esté vacia
-        if(tablaMascotas.getRowCount() > 0) {//con este metodo indicamos que no se pueda hacer nada si no se a seleccionado ningun elemento de la tabla
+        if(tablaMascotas.getRowCount() > 0) {
             //Controlamos que se haya seleccionado a una mascota
-            if(tablaMascotas.getSelectedRow()!=-1){//con este metod solo si hay algun valor selecciones solo entonces pueda hacer alguna eliminacion del elemento de la tabla
+            if(tablaMascotas.getSelectedRow()!=-1){
                 //obtenemos id de la mascota a eliminar                
                int num_cliente=Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(),0)));//Con este metodo Traemos el valor del numero de cliente de la tabla para convertirlo en String y luego guardarlo como int para poder saber que Datos borrar de la tabla
                //llamo al metodo borrar
@@ -169,7 +189,7 @@ public class VerDatos extends javax.swing.JFrame {
                
                //aviso al usuario que borró correctamente
                mostrarMensaje ("Mascota eliminada correctamente", "Info", "Borrado de Mascota");
-               cargarTabla();//llamamos a la funcion para actualizar nuestra tabla
+               cargarTabla();//llamamos a la funcion para actualizar nuestra tablaz
             }
             else{
                 mostrarMensaje("No seleccionó ninguna mascota", "Error","Error al eliminar");
@@ -195,8 +215,8 @@ public class VerDatos extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -205,7 +225,7 @@ public class VerDatos extends javax.swing.JFrame {
     private javax.swing.JTable tablaMascotas;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarTabla() {
+    public void cargarTabla() {
         //Definir el modelo que queremos que tenga la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel() {
             //hacemos que filas y columnas no sean editable sobreescribiendo el metodo isCellEditable.

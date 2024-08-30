@@ -36,6 +36,43 @@ public class Controladora {
     public void borrarMascota(int num_cliente) {
         controlPersis.borrarMascota (num_cliente);
     }
+
+    public Mascota traerMascota(int num_cliente) {
+        return controlPersis.traerMascota(num_cliente);
+    }
+
+    public void modificarMascota(Mascota masco, String nombreMasco, String raza, String color,
+            String observaciones, String alergico, String atenEsp, String nombreDuenio, String tlfDuenio) {
+        //asignamos nuestros cambios o edicion al anterior contructor
+        masco.setNombre(nombreMasco);
+        masco.setRaza(raza);
+        masco.setColor(color);
+        masco.setObservaciones(observaciones);
+        masco.setAlergico(alergico);
+        masco.setAtencion_especial(atenEsp);
+        
+        
+        //Para guardar los datos del dueño creamos un metodo en la controladora de la logica mediate los datos de la mascota        
+        controlPersis.modificarMascota(masco);
+        
+        //identificamos el dueño creando un metodo en la controladora de persistencia y seteo de nuevos valores del dueño.
+        Duenio dueno= this.buscarDuenio(masco.getUnDuenio().getId_duenio());
+        dueno.setNombre(nombreDuenio);
+        dueno.setTlfDueño(tlfDuenio);
+        
+        //Llamar al modificar Dueño.
+        this.modificarDuenio(dueno);
+             
+       
+    }
+
+    private Duenio buscarDuenio(int id_duenio) {
+        return controlPersis.trearDuenio(id_duenio);
+    }
+
+    private void modificarDuenio(Duenio dueno) {
+        controlPersis.modificarDuenio(dueno);
+    }
     
     
 
